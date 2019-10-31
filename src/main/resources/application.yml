@@ -1,0 +1,35 @@
+info:
+  project:
+    version: @project.version@
+
+spring:
+  application:
+    name: security
+
+logging:
+  level:
+    root: info
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://admin:admin@localhost:8761/eureka/
+    enabled: true
+    healthcheck:
+      enabled: true
+  instance:
+    appname: security
+    instanceId: security:${spring.application.instance-id:${random.value}}
+    metadata-map:
+      profile: ${spring.profiles.active}
+      version: ${project.version}
+    ip-address: true
+
+#ribbon:
+#  eureka:
+#    enabled: true
+#  ConnectTimeout: 60000
+#  ReadTimeout: 60000
+
+server:
+  port: 8181
